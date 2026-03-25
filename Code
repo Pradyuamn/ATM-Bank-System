@@ -1,69 +1,57 @@
-# ATM Data (Dictionary)
 account = {
-    "pin": "1234",
-    "balance": 1000
+    "name": "Pradyumn Borade",
+    "pin": "708090",
+    "balance": 15345
 }
 
-# List (menu options)
 menu = ["Check Balance", "Deposit", "Withdraw", "Exit"]
-
-# Tuple (fixed info)
 bank_info = ("Welcome to ATM", "Secure Banking System")
 
 print(bank_info[0])
 print(bank_info[1])
 
-# PIN check
 attempts = 0
-
 while attempts < 3:
     user_pin = input("Enter PIN: ")
-
+    
     if user_pin == account["pin"]:
-        print("Login Successful ✅")
-
+        print(f"Login Successful ✅ Welcome, {account['name']}!")
+        
         while True:
-            print("\n--- MENU ---")
+            print(f"\n--- MENU --- [{account['name']}]")
+            for i, option in enumerate(menu, start=1):
+                print(i, option)
             
-            # Loop through list
-            for i in range(len(menu)):
-                print(i+1, menu[i])
-
             choice = input("Enter choice: ")
-
-            # Check Balance
+            
             if choice == "1":
-                print("Balance:", account["balance"])
-
-            # Deposit
-            elif choice == "2":
-                amount = int(input("Enter amount: "))
-                account["balance"] = account["balance"] + amount   # operator +
-                print("Deposit Successful")
-
-            # Withdraw
-            elif choice == "3":
-                amount = int(input("Enter amount: "))
+                print(f"Account Holder : {account['name']}")
+                print(f"Your Balance   : ₹{account['balance']}")
                 
-                if amount <= account["balance"]:   # operator <=
-                    account["balance"] = account["balance"] - amount   # operator -
-                    print("Withdraw Successful")
+            elif choice == "2":
+                amount = int(input("Enter deposit amount: "))
+                account["balance"] += amount
+                print(f"₹{amount} Deposited Successfully ✅")
+                
+            elif choice == "3":
+                amount = int(input("Enter withdrawal amount: "))
+                if amount <= account["balance"]:
+                    account["balance"] -= amount
+                    print(f"₹{amount} Withdrawn Successfully ✅")
                 else:
-                    print("Insufficient Balance")
-
-            # Exit
+                    print("Insufficient Balance ❌")
+                    
             elif choice == "4":
-                print("Thank you 🙏")
+                print(f"Thank you, {account['name']}! Have a great day 🙏")
                 break
-
             else:
-                print("Invalid choice")
-
+                print("Invalid choice. Please try again.")
         break
-
+    
     else:
-        attempts = attempts + 1   # operator +
-        print("Wrong PIN")
-
+        attempts += 1
+        remaining = 3 - attempts
         if attempts == 3:
             print("Account Blocked ❌")
+        else:
+            print(f"Wrong PIN! {remaining} attempt(s) remaining.")
