@@ -15,7 +15,7 @@ while attempts < 3:
     user_pin = input("Enter PIN: ")
     
     if user_pin == account["pin"]:
-        print(f"Login Successful ✅ Welcome, {account['name']}!")
+        print(f"Login Successful  Welcome, {account['name']}!")
         
         while True:
             print(f"\n--- MENU --- [{account['name']}]")
@@ -39,10 +39,10 @@ while attempts < 3:
                     account["balance"] -= amount
                     print(f"₹{amount} Withdrawn Successfully ✅")
                 else:
-                    print("Insufficient Balance ❌")
+                    print("Insufficient Balance ")
                     
             elif choice == "4":
-                print(f"Thank you, {account['name']}! Have a great day 🙏")
+                print(f"Thank you, {account['name']}! Have a great day ")
                 break
             else:
                 print("Invalid choice. Please try again.")
